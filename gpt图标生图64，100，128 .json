@@ -1,0 +1,2976 @@
+{
+  "id": "5d7817eb-c135-4eb5-83c1-dc04f77baa9c",
+  "revision": 0,
+  "last_node_id": 60,
+  "last_link_id": 74,
+  "nodes": [
+    {
+      "id": 8,
+      "type": "BiRefNetRMBG",
+      "pos": [
+        -0.55165333666946,
+        -165.03476249999937
+      ],
+      "size": [
+        410,
+        300
+      ],
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 36
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            12,
+            30,
+            40,
+            55
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null
+        },
+        {
+          "name": "MASK_IMAGE",
+          "type": "IMAGE",
+          "links": [
+            35
+          ]
+        }
+      ],
+      "title": "02 ComfyUI-RMBG：像素/卡通图标专用",
+      "properties": {
+        "Node name for S&R": "BiRefNetRMBG",
+        "cnr_id": "comfyui-rmbg"
+      },
+      "widgets_values": [
+        "BiRefNet_toonout",
+        0,
+        -2,
+        false,
+        true,
+        "Alpha",
+        "#222222"
+      ],
+      "color": "#222e40",
+      "bgcolor": "#364254"
+    },
+    {
+      "id": 9,
+      "type": "ImageScale",
+      "pos": [
+        489.44834666332986,
+        -125.03476249999942
+      ],
+      "size": [
+        300,
+        170
+      ],
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 12
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            13,
+            31
+          ]
+        }
+      ],
+      "title": "09 Area 缩小到 64×64",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.24.1",
+        "Node name for S&R": "ImageScale"
+      },
+      "widgets_values": [
+        "area",
+        64,
+        64,
+        "disabled"
+      ]
+    },
+    {
+      "id": 10,
+      "type": "PerfectPixel",
+      "pos": [
+        859.4483466633296,
+        -125.03476249999942
+      ],
+      "size": [
+        330,
+        145
+      ],
+      "flags": {},
+      "order": 15,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 13
+        }
+      ],
+      "outputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "links": [
+            14
+          ]
+        }
+      ],
+      "title": "10 可选实验：Perfect Pixel（默认旁路）",
+      "properties": {
+        "aux_id": "TobyKSKGD/perfectPixel-ComfyUI",
+        "ver": "187557bba60ba2fe381e9beee1c155dc57065fd5",
+        "Node name for S&R": "PerfectPixel"
+      },
+      "widgets_values": [
+        "Majority Cluster",
+        1,
+        "OpenCV Backend"
+      ]
+    },
+    {
+      "id": 11,
+      "type": "ImageScale",
+      "pos": [
+        1259.4483466633303,
+        -135.0347624999994
+      ],
+      "size": [
+        300,
+        170
+      ],
+      "flags": {},
+      "order": 19,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 14
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            15
+          ]
+        }
+      ],
+      "title": "11 锁定最终尺寸 64×64",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.24.1",
+        "Node name for S&R": "ImageScale"
+      },
+      "widgets_values": [
+        "nearest-exact",
+        64,
+        64,
+        "disabled"
+      ]
+    },
+    {
+      "id": 12,
+      "type": "ComfyUIPixelate",
+      "pos": [
+        1861.858382568359,
+        -180.55834564208894
+      ],
+      "size": [
+        370,
+        440
+      ],
+      "flags": {},
+      "order": 23,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 15
+        },
+        {
+          "name": "palette_image",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            16,
+            33
+          ]
+        }
+      ],
+      "title": "12 图标主体15色 + 黑边 = 最多16种可见RGB",
+      "properties": {
+        "Node name for S&R": "ComfyUIPixelate"
+      },
+      "widgets_values": [
+        1,
+        "nearest",
+        false,
+        "rgb",
+        15,
+        "mediancut",
+        "none",
+        15
+      ]
+    },
+    {
+      "id": 13,
+      "type": "SplitImageWithAlpha",
+      "pos": [
+        2497.3503317898303,
+        -19.145186730083605
+      ],
+      "size": [
+        260,
+        100
+      ],
+      "flags": {},
+      "order": 26,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 16
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            17
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": [
+            18
+          ]
+        }
+      ],
+      "title": "13 分离 RGB / Alpha",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.24.1",
+        "Node name for S&R": "SplitImageWithAlpha"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 14,
+      "type": "ThresholdMask",
+      "pos": [
+        2837.3503317898303,
+        150.85481326991635
+      ],
+      "size": [
+        310.5552734375,
+        95
+      ],
+      "flags": {},
+      "order": 30,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "mask",
+          "type": "MASK",
+          "link": 18
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": [
+            19
+          ]
+        }
+      ],
+      "title": "14 Alpha硬化为0/255（0.6保留浅色细节）",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.24.1",
+        "Node name for S&R": "ThresholdMask"
+      },
+      "widgets_values": [
+        0.6
+      ]
+    },
+    {
+      "id": 15,
+      "type": "InvertMask",
+      "pos": [
+        3167.3503317898303,
+        140.85481326991635
+      ],
+      "size": [
+        220,
+        80
+      ],
+      "flags": {},
+      "order": 34,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "mask",
+          "type": "MASK",
+          "link": 19
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": [
+            20,
+            22
+          ]
+        }
+      ],
+      "title": "15 主体 Mask",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.24.1",
+        "Node name for S&R": "InvertMask"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 16,
+      "type": "GrowMask",
+      "pos": [
+        3467.3503317898303,
+        120.85481326991638
+      ],
+      "size": [
+        280,
+        120
+      ],
+      "flags": {},
+      "order": 37,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "mask",
+          "type": "MASK",
+          "link": 20
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": [
+            24
+          ]
+        }
+      ],
+      "title": "16 扩张 1px 生成黑边范围",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.24.1",
+        "Node name for S&R": "GrowMask"
+      },
+      "widgets_values": [
+        1,
+        false
+      ]
+    },
+    {
+      "id": 17,
+      "type": "EmptyImage",
+      "pos": [
+        2827.3503317898303,
+        -169.1451867300835
+      ],
+      "size": [
+        280,
+        145
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            21
+          ]
+        }
+      ],
+      "title": "17 纯黑描边底图",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.24.1",
+        "Node name for S&R": "EmptyImage"
+      },
+      "widgets_values": [
+        64,
+        64,
+        1,
+        0
+      ]
+    },
+    {
+      "id": 18,
+      "type": "ImageCompositeMasked",
+      "pos": [
+        3467.3503317898303,
+        -169.1451867300835
+      ],
+      "size": [
+        330,
+        220
+      ],
+      "flags": {},
+      "order": 38,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "destination",
+          "type": "IMAGE",
+          "link": 21
+        },
+        {
+          "name": "source",
+          "type": "IMAGE",
+          "link": 17
+        },
+        {
+          "name": "mask",
+          "shape": 7,
+          "type": "MASK",
+          "link": 22
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            23
+          ]
+        }
+      ],
+      "title": "18 主体覆盖黑色底图",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.24.1",
+        "Node name for S&R": "ImageCompositeMasked"
+      },
+      "widgets_values": [
+        0,
+        0,
+        false
+      ]
+    },
+    {
+      "id": 19,
+      "type": "InvertMask",
+      "pos": [
+        3837.3503317898303,
+        130.85481326991635
+      ],
+      "size": [
+        240,
+        80
+      ],
+      "flags": {},
+      "order": 43,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "mask",
+          "type": "MASK",
+          "link": 24
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": [
+            25
+          ]
+        }
+      ],
+      "title": "19 描边外部透明区域",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.24.1",
+        "Node name for S&R": "InvertMask"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 20,
+      "type": "JoinImageWithAlpha",
+      "pos": [
+        4147.350331789829,
+        -89.14518673008357
+      ],
+      "size": [
+        280,
+        105
+      ],
+      "flags": {},
+      "order": 46,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 23
+        },
+        {
+          "name": "alpha",
+          "type": "MASK",
+          "link": 25
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            37
+          ]
+        }
+      ],
+      "title": "20 最终 RGBA 图标：透明 + 1px 黑边",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.24.1",
+        "Node name for S&R": "JoinImageWithAlpha"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 21,
+      "type": "SaveImage",
+      "pos": [
+        -1640.4826942123896,
+        -1862.8268494350425
+      ],
+      "size": [
+        450,
+        390
+      ],
+      "flags": {},
+      "order": 50,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 38
+        }
+      ],
+      "outputs": [],
+      "title": "21 保存所选尺寸透明PNG图标成品",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.24.1",
+        "Node name for S&R": "SaveImage"
+      },
+      "widgets_values": [
+        "pixel_icons/GPT_Image_2_RMBG_Selectable_16C/icon"
+      ]
+    },
+    {
+      "id": 22,
+      "type": "ImageScale",
+      "pos": [
+        -1640.4826942123896,
+        -1372.8268494350482
+      ],
+      "size": [
+        325.2525390625,
+        170
+      ],
+      "flags": {},
+      "order": 51,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 39
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            28
+          ]
+        }
+      ],
+      "title": "22 所选成品最近邻放大到512×512（只预览）",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.24.1",
+        "Node name for S&R": "ImageScale"
+      },
+      "widgets_values": [
+        "nearest-exact",
+        512,
+        512,
+        "disabled"
+      ]
+    },
+    {
+      "id": 23,
+      "type": "PreviewImage",
+      "pos": [
+        -1250.4826942123912,
+        -1412.8268494350477
+      ],
+      "size": [
+        520,
+        520
+      ],
+      "flags": {},
+      "order": 52,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 28
+        }
+      ],
+      "outputs": [],
+      "title": "23 所选64/100/128图标像素级检查预览",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.24.1",
+        "Node name for S&R": "PreviewImage"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 24,
+      "type": "PreviewImage",
+      "pos": [
+        -3139.120310462487,
+        1114.4761339672855
+      ],
+      "size": [
+        520,
+        520
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 74
+        }
+      ],
+      "outputs": [],
+      "title": "P1 GPT Image 2 原始输出（1024×1024）",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.24.1",
+        "Node name for S&R": "PreviewImage"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 25,
+      "type": "PreviewImage",
+      "pos": [
+        -2539.1203104624865,
+        1114.4761339672855
+      ],
+      "size": [
+        520,
+        520
+      ],
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 30
+        }
+      ],
+      "outputs": [],
+      "title": "P2 ComfyUI-RMBG透明结果（1024×1024）",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.24.1",
+        "Node name for S&R": "PreviewImage"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 26,
+      "type": "ImageScale",
+      "pos": [
+        -1939.1203104624888,
+        1114.4761339672855
+      ],
+      "size": [
+        310,
+        170
+      ],
+      "flags": {},
+      "order": 16,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 31
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            32
+          ]
+        }
+      ],
+      "title": "P3 最近邻放大缩小后的64×64（仅预览）",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.24.1",
+        "Node name for S&R": "ImageScale"
+      },
+      "widgets_values": [
+        "nearest-exact",
+        512,
+        512,
+        "disabled"
+      ]
+    },
+    {
+      "id": 27,
+      "type": "PreviewImage",
+      "pos": [
+        -1939.1203104624888,
+        1324.4761339672855
+      ],
+      "size": [
+        520,
+        520
+      ],
+      "flags": {},
+      "order": 20,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 32
+        }
+      ],
+      "outputs": [],
+      "title": "P3 缩小到64×64后的像素结构",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.24.1",
+        "Node name for S&R": "PreviewImage"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 28,
+      "type": "ImageScale",
+      "pos": [
+        -1339.1203104624867,
+        1114.4761339672855
+      ],
+      "size": [
+        310,
+        170
+      ],
+      "flags": {},
+      "order": 27,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 33
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            34
+          ]
+        }
+      ],
+      "title": "P4 最近邻放大15色结果（仅预览）",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.24.1",
+        "Node name for S&R": "ImageScale"
+      },
+      "widgets_values": [
+        "nearest-exact",
+        512,
+        512,
+        "disabled"
+      ]
+    },
+    {
+      "id": 29,
+      "type": "PreviewImage",
+      "pos": [
+        -1339.1203104624867,
+        1324.4761339672855
+      ],
+      "size": [
+        520,
+        520
+      ],
+      "flags": {},
+      "order": 31,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 34
+        }
+      ],
+      "outputs": [],
+      "title": "P4 主体15色量化结果（黑边前）",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.24.1",
+        "Node name for S&R": "PreviewImage"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 30,
+      "type": "PreviewImage",
+      "pos": [
+        -739.1203104624877,
+        1114.4761339672855
+      ],
+      "size": [
+        520,
+        520
+      ],
+      "flags": {},
+      "order": 14,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 35
+        }
+      ],
+      "outputs": [],
+      "title": "P2B RMBG前景Mask预览（白色必须完整）",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.24.1",
+        "Node name for S&R": "PreviewImage"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 31,
+      "type": "SplitImageWithAlpha",
+      "pos": [
+        -934.3259694417736,
+        -407.4804206772918
+      ],
+      "size": [
+        332.3140625,
+        110
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 73
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            36
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null
+        }
+      ],
+      "title": "01B 去除GPT输出Alpha：仅RGB送入BiRefNet",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.24.1",
+        "Node name for S&R": "SplitImageWithAlpha"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 36,
+      "type": "ImageScale",
+      "pos": [
+        36.371514737369026,
+        799.4646731597412
+      ],
+      "size": [
+        300,
+        170
+      ],
+      "flags": {},
+      "order": 12,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 40
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            41
+          ]
+        }
+      ],
+      "title": "100A Area 缩小到 100×100",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.24.1",
+        "Node name for S&R": "ImageScale"
+      },
+      "widgets_values": [
+        "area",
+        100,
+        100,
+        "disabled"
+      ]
+    },
+    {
+      "id": 37,
+      "type": "PerfectPixel",
+      "pos": [
+        376.3715147373688,
+        799.4646731597412
+      ],
+      "size": [
+        330,
+        145
+      ],
+      "flags": {},
+      "order": 17,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 41
+        }
+      ],
+      "outputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "links": [
+            42
+          ]
+        }
+      ],
+      "title": "100B 可选 Perfect Pixel（默认旁路）",
+      "properties": {
+        "aux_id": "TobyKSKGD/perfectPixel-ComfyUI",
+        "ver": "187557bba60ba2fe381e9beee1c155dc57065fd5",
+        "Node name for S&R": "PerfectPixel"
+      },
+      "widgets_values": [
+        "Majority Cluster",
+        1,
+        "OpenCV Backend"
+      ]
+    },
+    {
+      "id": 38,
+      "type": "ImageScale",
+      "pos": [
+        746.3715147373687,
+        799.4646731597412
+      ],
+      "size": [
+        300,
+        170
+      ],
+      "flags": {},
+      "order": 21,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 42
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            43
+          ]
+        }
+      ],
+      "title": "100C 锁定 100×100",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.24.1",
+        "Node name for S&R": "ImageScale"
+      },
+      "widgets_values": [
+        "nearest-exact",
+        100,
+        100,
+        "disabled"
+      ]
+    },
+    {
+      "id": 39,
+      "type": "ComfyUIPixelate",
+      "pos": [
+        1086.3715147373719,
+        719.4646731597414
+      ],
+      "size": [
+        370,
+        440
+      ],
+      "flags": {},
+      "order": 24,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 43
+        },
+        {
+          "name": "palette_image",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            44
+          ]
+        }
+      ],
+      "title": "100D 图标主体15色量化",
+      "properties": {
+        "Node name for S&R": "ComfyUIPixelate"
+      },
+      "widgets_values": [
+        1,
+        "nearest",
+        false,
+        "rgb",
+        15,
+        "mediancut",
+        "none",
+        15
+      ]
+    },
+    {
+      "id": 40,
+      "type": "SplitImageWithAlpha",
+      "pos": [
+        1496.3715147373719,
+        799.4646731597412
+      ],
+      "size": [
+        260,
+        100
+      ],
+      "flags": {},
+      "order": 28,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 44
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            49
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": [
+            45
+          ]
+        }
+      ],
+      "title": "100E 分离 RGB / Alpha",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.24.1",
+        "Node name for S&R": "SplitImageWithAlpha"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 41,
+      "type": "ThresholdMask",
+      "pos": [
+        1796.3715147373719,
+        979.464673159741
+      ],
+      "size": [
+        250,
+        95
+      ],
+      "flags": {},
+      "order": 32,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "mask",
+          "type": "MASK",
+          "link": 45
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": [
+            46
+          ]
+        }
+      ],
+      "title": "100F Alpha硬化",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.24.1",
+        "Node name for S&R": "ThresholdMask"
+      },
+      "widgets_values": [
+        0.6
+      ]
+    },
+    {
+      "id": 42,
+      "type": "InvertMask",
+      "pos": [
+        2086.3715147373696,
+        969.464673159741
+      ],
+      "size": [
+        220,
+        80
+      ],
+      "flags": {},
+      "order": 35,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "mask",
+          "type": "MASK",
+          "link": 46
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": [
+            47,
+            50
+          ]
+        }
+      ],
+      "title": "100G 图标主体 Mask",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.24.1",
+        "Node name for S&R": "InvertMask"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 43,
+      "type": "GrowMask",
+      "pos": [
+        2376.3715147373696,
+        959.464673159741
+      ],
+      "size": [
+        280,
+        120
+      ],
+      "flags": {},
+      "order": 39,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "mask",
+          "type": "MASK",
+          "link": 47
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": [
+            51
+          ]
+        }
+      ],
+      "title": "100H 扩张1px生成黑边",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.24.1",
+        "Node name for S&R": "GrowMask"
+      },
+      "widgets_values": [
+        1,
+        false
+      ]
+    },
+    {
+      "id": 44,
+      "type": "EmptyImage",
+      "pos": [
+        1786.3715147373719,
+        699.4646731597414
+      ],
+      "size": [
+        280,
+        145
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            48
+          ]
+        }
+      ],
+      "title": "100I 100×100纯黑描边底图",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.24.1",
+        "Node name for S&R": "EmptyImage"
+      },
+      "widgets_values": [
+        100,
+        100,
+        1,
+        0
+      ]
+    },
+    {
+      "id": 45,
+      "type": "ImageCompositeMasked",
+      "pos": [
+        2376.3715147373696,
+        689.4646731597414
+      ],
+      "size": [
+        330,
+        220
+      ],
+      "flags": {},
+      "order": 40,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "destination",
+          "type": "IMAGE",
+          "link": 48
+        },
+        {
+          "name": "source",
+          "type": "IMAGE",
+          "link": 49
+        },
+        {
+          "name": "mask",
+          "shape": 7,
+          "type": "MASK",
+          "link": 50
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            52
+          ]
+        }
+      ],
+      "title": "100J 图标主体覆盖黑色底图",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.24.1",
+        "Node name for S&R": "ImageCompositeMasked"
+      },
+      "widgets_values": [
+        0,
+        0,
+        false
+      ]
+    },
+    {
+      "id": 46,
+      "type": "InvertMask",
+      "pos": [
+        2726.3715147373696,
+        969.464673159741
+      ],
+      "size": [
+        240,
+        80
+      ],
+      "flags": {},
+      "order": 44,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "mask",
+          "type": "MASK",
+          "link": 51
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": [
+            53
+          ]
+        }
+      ],
+      "title": "100K 描边外部透明区域",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.24.1",
+        "Node name for S&R": "InvertMask"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 47,
+      "type": "JoinImageWithAlpha",
+      "pos": [
+        3036.3715147373696,
+        759.4646731597417
+      ],
+      "size": [
+        280,
+        105
+      ],
+      "flags": {},
+      "order": 47,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 52
+        },
+        {
+          "name": "alpha",
+          "type": "MASK",
+          "link": 53
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            54
+          ]
+        }
+      ],
+      "title": "100L 最终RGBA图标：透明+1px黑边",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.24.1",
+        "Node name for S&R": "JoinImageWithAlpha"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 48,
+      "type": "ImageScale",
+      "pos": [
+        51.91031763394808,
+        1814.9468194267683
+      ],
+      "size": [
+        300,
+        170
+      ],
+      "flags": {},
+      "order": 13,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 55
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            56
+          ]
+        }
+      ],
+      "title": "128A Area 缩小到 128×128",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.24.1",
+        "Node name for S&R": "ImageScale"
+      },
+      "widgets_values": [
+        "area",
+        128,
+        128,
+        "disabled"
+      ]
+    },
+    {
+      "id": 49,
+      "type": "PerfectPixel",
+      "pos": [
+        391.9103176339471,
+        1814.9468194267683
+      ],
+      "size": [
+        330,
+        145
+      ],
+      "flags": {},
+      "order": 18,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 56
+        }
+      ],
+      "outputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "links": [
+            57
+          ]
+        }
+      ],
+      "title": "128B 可选 Perfect Pixel（默认旁路）",
+      "properties": {
+        "aux_id": "TobyKSKGD/perfectPixel-ComfyUI",
+        "ver": "187557bba60ba2fe381e9beee1c155dc57065fd5",
+        "Node name for S&R": "PerfectPixel"
+      },
+      "widgets_values": [
+        "Majority Cluster",
+        1,
+        "OpenCV Backend"
+      ]
+    },
+    {
+      "id": 50,
+      "type": "ImageScale",
+      "pos": [
+        761.9103176339482,
+        1814.9468194267683
+      ],
+      "size": [
+        300,
+        170
+      ],
+      "flags": {},
+      "order": 22,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 57
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            58
+          ]
+        }
+      ],
+      "title": "128C 锁定 128×128",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.24.1",
+        "Node name for S&R": "ImageScale"
+      },
+      "widgets_values": [
+        "nearest-exact",
+        128,
+        128,
+        "disabled"
+      ]
+    },
+    {
+      "id": 51,
+      "type": "ComfyUIPixelate",
+      "pos": [
+        1101.9103176339552,
+        1734.9468194267683
+      ],
+      "size": [
+        370,
+        440
+      ],
+      "flags": {},
+      "order": 25,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 58
+        },
+        {
+          "name": "palette_image",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            59
+          ]
+        }
+      ],
+      "title": "128D 图标主体15色量化",
+      "properties": {
+        "Node name for S&R": "ComfyUIPixelate"
+      },
+      "widgets_values": [
+        1,
+        "nearest",
+        false,
+        "rgb",
+        15,
+        "mediancut",
+        "none",
+        15
+      ]
+    },
+    {
+      "id": 52,
+      "type": "SplitImageWithAlpha",
+      "pos": [
+        1511.9103176339543,
+        1814.9468194267683
+      ],
+      "size": [
+        260,
+        100
+      ],
+      "flags": {},
+      "order": 29,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 59
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            64
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": [
+            60
+          ]
+        }
+      ],
+      "title": "128E 分离 RGB / Alpha",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.24.1",
+        "Node name for S&R": "SplitImageWithAlpha"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 53,
+      "type": "ThresholdMask",
+      "pos": [
+        1811.910317633952,
+        1994.946819426768
+      ],
+      "size": [
+        250,
+        95
+      ],
+      "flags": {},
+      "order": 33,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "mask",
+          "type": "MASK",
+          "link": 60
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": [
+            61
+          ]
+        }
+      ],
+      "title": "128F Alpha硬化",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.24.1",
+        "Node name for S&R": "ThresholdMask"
+      },
+      "widgets_values": [
+        0.6
+      ]
+    },
+    {
+      "id": 54,
+      "type": "InvertMask",
+      "pos": [
+        2101.910317633942,
+        1984.9468194267681
+      ],
+      "size": [
+        220,
+        80
+      ],
+      "flags": {},
+      "order": 36,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "mask",
+          "type": "MASK",
+          "link": 61
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": [
+            62,
+            65
+          ]
+        }
+      ],
+      "title": "128G 主体 Mask",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.24.1",
+        "Node name for S&R": "InvertMask"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 55,
+      "type": "GrowMask",
+      "pos": [
+        2391.9103176339413,
+        1974.9468194267683
+      ],
+      "size": [
+        280,
+        120
+      ],
+      "flags": {},
+      "order": 41,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "mask",
+          "type": "MASK",
+          "link": 62
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": [
+            66
+          ]
+        }
+      ],
+      "title": "128H 扩张1px生成黑边",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.24.1",
+        "Node name for S&R": "GrowMask"
+      },
+      "widgets_values": [
+        1,
+        false
+      ]
+    },
+    {
+      "id": 56,
+      "type": "EmptyImage",
+      "pos": [
+        1801.9103176339524,
+        1714.9468194267683
+      ],
+      "size": [
+        280,
+        145
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            63
+          ]
+        }
+      ],
+      "title": "128I 128×128纯黑描边底图",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.24.1",
+        "Node name for S&R": "EmptyImage"
+      },
+      "widgets_values": [
+        128,
+        128,
+        1,
+        0
+      ]
+    },
+    {
+      "id": 57,
+      "type": "ImageCompositeMasked",
+      "pos": [
+        2391.9103176339413,
+        1704.9468194267683
+      ],
+      "size": [
+        330,
+        220
+      ],
+      "flags": {},
+      "order": 42,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "destination",
+          "type": "IMAGE",
+          "link": 63
+        },
+        {
+          "name": "source",
+          "type": "IMAGE",
+          "link": 64
+        },
+        {
+          "name": "mask",
+          "shape": 7,
+          "type": "MASK",
+          "link": 65
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            67
+          ]
+        }
+      ],
+      "title": "128J 主体覆盖黑色底图",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.24.1",
+        "Node name for S&R": "ImageCompositeMasked"
+      },
+      "widgets_values": [
+        0,
+        0,
+        false
+      ]
+    },
+    {
+      "id": 58,
+      "type": "InvertMask",
+      "pos": [
+        2741.9103176339413,
+        1984.9468194267681
+      ],
+      "size": [
+        240,
+        80
+      ],
+      "flags": {},
+      "order": 45,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "mask",
+          "type": "MASK",
+          "link": 66
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": [
+            68
+          ]
+        }
+      ],
+      "title": "128K 描边外部透明区域",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.24.1",
+        "Node name for S&R": "InvertMask"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 59,
+      "type": "JoinImageWithAlpha",
+      "pos": [
+        3051.9103176339413,
+        1774.9468194267686
+      ],
+      "size": [
+        280,
+        105
+      ],
+      "flags": {},
+      "order": 48,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 67
+        },
+        {
+          "name": "alpha",
+          "type": "MASK",
+          "link": 68
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            69
+          ]
+        }
+      ],
+      "title": "128L 最终RGBA图标：透明+1px黑边",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.24.1",
+        "Node name for S&R": "JoinImageWithAlpha"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 32,
+      "type": "LoadImage",
+      "pos": [
+        -2864.0062832641524,
+        -83.81692785644503
+      ],
+      "size": [
+        370,
+        410
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            70
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null
+        }
+      ],
+      "title": "00A 可选图标参考图：仅图生图模式使用",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.24.1",
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "屏幕截图 2026-04-04 181221.png",
+        "image"
+      ]
+    },
+    {
+      "id": 33,
+      "type": "ImpactSwitch",
+      "pos": [
+        -2414.0062832641543,
+        16.183072143554664
+      ],
+      "size": [
+        330,
+        150
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "1 = 文生图",
+          "name": "input1",
+          "shape": 7,
+          "type": "*",
+          "link": 71
+        },
+        {
+          "label": "2 = 图生图",
+          "name": "input2",
+          "type": "IMAGE",
+          "link": 72
+        },
+        {
+          "label": "保留空插槽，请勿连接",
+          "name": "input3",
+          "type": "IMAGE",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "label": "可选参考图",
+          "name": "selected_value",
+          "type": "*",
+          "slot_index": 0,
+          "links": [
+            73,
+            74
+          ]
+        },
+        {
+          "label": "当前模式",
+          "name": "selected_label",
+          "type": "STRING",
+          "links": null
+        },
+        {
+          "name": "selected_index",
+          "type": "INT",
+          "links": null
+        }
+      ],
+      "title": "00B 生图模式：1=文生图 / 2=图生图",
+      "properties": {
+        "cnr_id": "comfyui-impact-pack",
+        "ver": "e22f68fb97115b24ddf35d3d8801cc99fdb8af8d",
+        "Node name for S&R": "ImpactSwitch"
+      },
+      "widgets_values": [
+        1,
+        false
+      ]
+    },
+    {
+      "id": 60,
+      "type": "OpenAIGPTImage1",
+      "pos": [
+        -1733.1991905930397,
+        132.86539293644068
+      ],
+      "size": [
+        620,
+        670
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 70
+        },
+        {
+          "name": "mask",
+          "shape": 7,
+          "type": "MASK",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            72
+          ]
+        }
+      ],
+      "title": "01B GPT Image 2 参考图转像素图标（00B选择2）",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.24.1",
+        "Node name for S&R": "OpenAIGPTImage1"
+      },
+      "widgets_values": [
+        "Transform the provided reference image into one production-ready 2D pixel-art game UI icon.\nPreserve the reference's essential identity, signature colors, and most recognizable motif, but redesign it as a single compact symbolic glyph/emblem for a game HUD or skill bar—not as a physical inventory item, product illustration, item card, or scene.\nThe icon artwork must be centered, square-balanced, immediately readable at small size, and occupy 82–88% of the canvas with a narrow even margin. Simplify the reference to one dominant silhouette and a few bold internal details; keep any energy accents attached to the compact icon shape.\nRetro pixel-art UI asset, chunky deliberate pixel clusters, crisp hard edges, strong dark outer contour, flat colors, limited palette, simple two-step cel shading, high contrast, top-left lighting. Keep the design clean enough to survive reduction to 64×64.\nUse a completely solid flat magenta background (#FF00FF), with no texture and no gradient.\nNo orthographic product view, equipment showcase, isolated inventory object, pedestal, environment, floor, cast shadow, UI panel, icon frame, button, text, letters, numbers, watermark, duplicate symbol, cropping, tiny artwork, excessive empty space, photorealism, 3D rendering, antialiasing, smooth gradients, blur, or soft transparency.",
+        405383342,
+        "randomize",
+        "low",
+        "opaque",
+        "1024x1024",
+        1,
+        "gpt-image-2",
+        1024,
+        1024
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 1,
+      "type": "OpenAIGPTImage1",
+      "pos": [
+        -1739.628981249301,
+        -623.0864720356017
+      ],
+      "size": [
+        620,
+        670
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "name": "mask",
+          "shape": 7,
+          "type": "MASK",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            71
+          ]
+        }
+      ],
+      "title": "01A GPT Image 2 图标文生图（修改提示词首行主题）",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.24.1",
+        "Node name for S&R": "OpenAIGPTImage1"
+      },
+      "widgets_values": [
+        "Create one blue flame magic ability symbol as a production-ready 2D pixel-art game UI icon.\nDesign it as a single compact symbolic glyph/emblem made specifically for a game HUD or skill bar, not as a physical inventory item, product illustration, item card, or scene.\nThe icon artwork must be centered, square-balanced, immediately readable at small size, and occupy 82–88% of the canvas with a narrow even margin. Use one dominant silhouette and only a few bold internal details; any sparks or energy accents must remain attached to the compact icon shape.\nRetro pixel-art UI asset, chunky deliberate pixel clusters, crisp hard edges, strong dark outer contour, flat colors, limited palette, simple two-step cel shading, high contrast, top-left lighting. Keep the design clean enough to survive reduction to 64×64.\nUse a completely solid flat magenta background (#FF00FF), with no texture and no gradient.\nNo orthographic product view, equipment showcase, isolated inventory object, pedestal, environment, floor, cast shadow, UI panel, icon frame, button, text, letters, numbers, watermark, duplicate symbol, cropping, tiny artwork, excessive empty space, photorealism, 3D rendering, antialiasing, smooth gradients, blur, or soft transparency.",
+        1125553312,
+        "randomize",
+        "low",
+        "opaque",
+        "1024x1024",
+        1,
+        "gpt-image-2",
+        1024,
+        1024
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 35,
+      "type": "ImpactSwitch",
+      "pos": [
+        -2675.7604580680754,
+        -633.4606248755499
+      ],
+      "size": [
+        390,
+        180
+      ],
+      "flags": {},
+      "order": 49,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "1 = 64×64",
+          "name": "input1",
+          "shape": 7,
+          "type": "*",
+          "link": 37
+        },
+        {
+          "label": "2 = 100×100（推荐）",
+          "name": "input2",
+          "type": "IMAGE",
+          "link": 54
+        },
+        {
+          "label": "3 = 128×128",
+          "name": "input3",
+          "type": "IMAGE",
+          "link": 69
+        },
+        {
+          "label": "保留空插槽，请勿连接",
+          "name": "input4",
+          "type": "IMAGE",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "label": "所选尺寸成品",
+          "name": "selected_value",
+          "type": "*",
+          "slot_index": 0,
+          "links": [
+            38,
+            39
+          ]
+        },
+        {
+          "label": "当前尺寸",
+          "name": "selected_label",
+          "type": "STRING",
+          "links": null
+        },
+        {
+          "name": "selected_index",
+          "type": "INT",
+          "links": null
+        }
+      ],
+      "title": "20A 最终尺寸：1=64 / 2=100 / 3=128（默认2）",
+      "properties": {
+        "cnr_id": "comfyui-impact-pack",
+        "ver": "e22f68fb97115b24ddf35d3d8801cc99fdb8af8d",
+        "Node name for S&R": "ImpactSwitch"
+      },
+      "widgets_values": [
+        1,
+        false
+      ]
+    }
+  ],
+  "links": [
+    [
+      12,
+      8,
+      0,
+      9,
+      0,
+      "IMAGE"
+    ],
+    [
+      13,
+      9,
+      0,
+      10,
+      0,
+      "IMAGE"
+    ],
+    [
+      14,
+      10,
+      0,
+      11,
+      0,
+      "IMAGE"
+    ],
+    [
+      15,
+      11,
+      0,
+      12,
+      0,
+      "IMAGE"
+    ],
+    [
+      16,
+      12,
+      0,
+      13,
+      0,
+      "IMAGE"
+    ],
+    [
+      17,
+      13,
+      0,
+      18,
+      1,
+      "IMAGE"
+    ],
+    [
+      18,
+      13,
+      1,
+      14,
+      0,
+      "MASK"
+    ],
+    [
+      19,
+      14,
+      0,
+      15,
+      0,
+      "MASK"
+    ],
+    [
+      20,
+      15,
+      0,
+      16,
+      0,
+      "MASK"
+    ],
+    [
+      21,
+      17,
+      0,
+      18,
+      0,
+      "IMAGE"
+    ],
+    [
+      22,
+      15,
+      0,
+      18,
+      2,
+      "MASK"
+    ],
+    [
+      23,
+      18,
+      0,
+      20,
+      0,
+      "IMAGE"
+    ],
+    [
+      24,
+      16,
+      0,
+      19,
+      0,
+      "MASK"
+    ],
+    [
+      25,
+      19,
+      0,
+      20,
+      1,
+      "MASK"
+    ],
+    [
+      28,
+      22,
+      0,
+      23,
+      0,
+      "IMAGE"
+    ],
+    [
+      30,
+      8,
+      0,
+      25,
+      0,
+      "IMAGE"
+    ],
+    [
+      31,
+      9,
+      0,
+      26,
+      0,
+      "IMAGE"
+    ],
+    [
+      32,
+      26,
+      0,
+      27,
+      0,
+      "IMAGE"
+    ],
+    [
+      33,
+      12,
+      0,
+      28,
+      0,
+      "IMAGE"
+    ],
+    [
+      34,
+      28,
+      0,
+      29,
+      0,
+      "IMAGE"
+    ],
+    [
+      35,
+      8,
+      2,
+      30,
+      0,
+      "IMAGE"
+    ],
+    [
+      36,
+      31,
+      0,
+      8,
+      0,
+      "IMAGE"
+    ],
+    [
+      37,
+      20,
+      0,
+      35,
+      0,
+      "IMAGE"
+    ],
+    [
+      40,
+      8,
+      0,
+      36,
+      0,
+      "IMAGE"
+    ],
+    [
+      41,
+      36,
+      0,
+      37,
+      0,
+      "IMAGE"
+    ],
+    [
+      42,
+      37,
+      0,
+      38,
+      0,
+      "IMAGE"
+    ],
+    [
+      43,
+      38,
+      0,
+      39,
+      0,
+      "IMAGE"
+    ],
+    [
+      44,
+      39,
+      0,
+      40,
+      0,
+      "IMAGE"
+    ],
+    [
+      45,
+      40,
+      1,
+      41,
+      0,
+      "MASK"
+    ],
+    [
+      46,
+      41,
+      0,
+      42,
+      0,
+      "MASK"
+    ],
+    [
+      47,
+      42,
+      0,
+      43,
+      0,
+      "MASK"
+    ],
+    [
+      48,
+      44,
+      0,
+      45,
+      0,
+      "IMAGE"
+    ],
+    [
+      49,
+      40,
+      0,
+      45,
+      1,
+      "IMAGE"
+    ],
+    [
+      50,
+      42,
+      0,
+      45,
+      2,
+      "MASK"
+    ],
+    [
+      51,
+      43,
+      0,
+      46,
+      0,
+      "MASK"
+    ],
+    [
+      52,
+      45,
+      0,
+      47,
+      0,
+      "IMAGE"
+    ],
+    [
+      53,
+      46,
+      0,
+      47,
+      1,
+      "MASK"
+    ],
+    [
+      54,
+      47,
+      0,
+      35,
+      1,
+      "IMAGE"
+    ],
+    [
+      55,
+      8,
+      0,
+      48,
+      0,
+      "IMAGE"
+    ],
+    [
+      56,
+      48,
+      0,
+      49,
+      0,
+      "IMAGE"
+    ],
+    [
+      57,
+      49,
+      0,
+      50,
+      0,
+      "IMAGE"
+    ],
+    [
+      58,
+      50,
+      0,
+      51,
+      0,
+      "IMAGE"
+    ],
+    [
+      59,
+      51,
+      0,
+      52,
+      0,
+      "IMAGE"
+    ],
+    [
+      60,
+      52,
+      1,
+      53,
+      0,
+      "MASK"
+    ],
+    [
+      61,
+      53,
+      0,
+      54,
+      0,
+      "MASK"
+    ],
+    [
+      62,
+      54,
+      0,
+      55,
+      0,
+      "MASK"
+    ],
+    [
+      63,
+      56,
+      0,
+      57,
+      0,
+      "IMAGE"
+    ],
+    [
+      64,
+      52,
+      0,
+      57,
+      1,
+      "IMAGE"
+    ],
+    [
+      65,
+      54,
+      0,
+      57,
+      2,
+      "MASK"
+    ],
+    [
+      66,
+      55,
+      0,
+      58,
+      0,
+      "MASK"
+    ],
+    [
+      67,
+      57,
+      0,
+      59,
+      0,
+      "IMAGE"
+    ],
+    [
+      68,
+      58,
+      0,
+      59,
+      1,
+      "MASK"
+    ],
+    [
+      69,
+      59,
+      0,
+      35,
+      2,
+      "IMAGE"
+    ],
+    [
+      38,
+      35,
+      0,
+      21,
+      0,
+      "IMAGE"
+    ],
+    [
+      39,
+      35,
+      0,
+      22,
+      0,
+      "IMAGE"
+    ],
+    [
+      70,
+      32,
+      0,
+      60,
+      0,
+      "IMAGE"
+    ],
+    [
+      71,
+      1,
+      0,
+      33,
+      0,
+      "IMAGE"
+    ],
+    [
+      72,
+      60,
+      0,
+      33,
+      1,
+      "IMAGE"
+    ],
+    [
+      73,
+      33,
+      0,
+      31,
+      0,
+      "IMAGE"
+    ],
+    [
+      74,
+      33,
+      0,
+      24,
+      0,
+      "IMAGE"
+    ]
+  ],
+  "groups": [
+    {
+      "id": 1,
+      "title": "A GPT Image 2 付费像素图标生成区",
+      "bounding": [
+        -1834.3259694417723,
+        -717.4804206772916,
+        1391.2352401214962,
+        1665.392039729083
+      ],
+      "color": "#3f789e",
+      "flags": {}
+    },
+    {
+      "id": 2,
+      "title": "B ComfyUI-RMBG透明化与64×64图标（Perfect Pixel默认旁路）",
+      "bounding": [
+        -50.55165333666949,
+        -255.03476249999943,
+        1640,
+        590
+      ],
+      "color": "#557a55",
+      "flags": {}
+    },
+    {
+      "id": 3,
+      "title": "C 图标主体15色量化",
+      "bounding": [
+        1811.858382568359,
+        -250.5583456420889,
+        470,
+        580
+      ],
+      "color": "#8a6d3b",
+      "flags": {}
+    },
+    {
+      "id": 4,
+      "title": "D 硬Alpha + 1px黑边（最多16种可见RGB）",
+      "bounding": [
+        2447.3503317898303,
+        -259.14518673008354,
+        2040,
+        600
+      ],
+      "color": "#75507b",
+      "flags": {}
+    },
+    {
+      "id": 5,
+      "title": "E 保存透明图标成品与最近邻预览",
+      "bounding": [
+        -1690.482694212391,
+        -1922.8268494350414,
+        1010,
+        1080
+      ],
+      "color": "#6b6b45",
+      "flags": {}
+    },
+    {
+      "id": 6,
+      "title": "F 重要步骤诊断预览（从左到右）",
+      "bounding": [
+        -3199.120310462487,
+        1034.4761339672855,
+        3040,
+        900
+      ],
+      "color": "#4d6f78",
+      "flags": {}
+    },
+    {
+      "id": 7,
+      "title": "G 可选图生图：只改00B，1关闭/2开启",
+      "bounding": [
+        -2914.0062832641524,
+        -173.8169278564451,
+        900,
+        560
+      ],
+      "color": "#4f6b8a",
+      "flags": {}
+    },
+    {
+      "id": 8,
+      "title": "H 100×100输出分支（由20A选择）",
+      "bounding": [
+        -33.62848526263099,
+        649.4646731597417,
+        3650,
+        700
+      ],
+      "color": "#6b5876",
+      "flags": {}
+    },
+    {
+      "id": 9,
+      "title": "I 128×128输出分支（由20A选择）",
+      "bounding": [
+        -18.089682366051786,
+        1664.9468194267683,
+        3650,
+        700
+      ],
+      "color": "#566f57",
+      "flags": {}
+    }
+  ],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 1.2100000000000004,
+      "offset": [
+        3088.151980646473,
+        956.3067306343564
+      ]
+    },
+    "frontendVersion": "1.44.19",
+    "VHS_MetadataImage": true,
+    "VHS_KeepIntermediate": true,
+    "qgn_navigation_groups": [
+      {
+        "id": "qgn_1762179482596_3o8uqet7d",
+        "groupName": "🌟控制台",
+        "shortcutKey": "1",
+        "order": 0
+      },
+      {
+        "id": "qgn_1762179594950_y5po5q71r",
+        "groupName": "📌组管理区",
+        "shortcutKey": "2",
+        "order": 1
+      },
+      {
+        "id": "qgn_1762179601030_8pugq2taj",
+        "groupName": "【↔️图像对比】总开关",
+        "shortcutKey": "3",
+        "order": 2
+      },
+      {
+        "id": "qgn_1762179612614_jz5yh47p1",
+        "groupName": "⚙️文生图参数控制区",
+        "shortcutKey": "4",
+        "order": 3
+      },
+      {
+        "id": "qgn_1762179626870_71341mntr",
+        "groupName": "【📦文生图可选】D站画廊",
+        "shortcutKey": "5",
+        "order": 4
+      },
+      {
+        "id": "qgn_1762581046543_40hh40bvs",
+        "groupName": "【📦文生图可选】图像反推",
+        "shortcutKey": "6",
+        "order": 5
+      },
+      {
+        "id": "qgn_1762581051772_mof8fl7kd",
+        "groupName": "【📦文生图可选】底图控制网",
+        "shortcutKey": "7",
+        "order": 6
+      },
+      {
+        "id": "qgn_1762581056023_icdeqgkl9",
+        "groupName": "【📦文生图可选】角色特征替换",
+        "shortcutKey": "8",
+        "order": 7
+      },
+      {
+        "id": "qgn_1762581062716_21ylcgzob",
+        "groupName": "【📦文生图可选】多人提示词编辑",
+        "shortcutKey": "9",
+        "order": 8
+      },
+      {
+        "id": "qgn_1762581070639_aeac25q3p",
+        "groupName": "【💊独立功能】局部重绘（需要反推区的反推模型）",
+        "shortcutKey": "/",
+        "order": 9
+      },
+      {
+        "id": "qgn_1762581092263_ozlar1ti0",
+        "groupName": "【🔍预览】提示词与文本缓存预览",
+        "shortcutKey": "*",
+        "order": 10
+      }
+    ],
+    "qgn_locked": true
+  },
+  "version": 0.4
+}
